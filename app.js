@@ -1,15 +1,24 @@
-const fs = require('fs');
-const generatePage = require('./src/page-template.js');
+const inquirer = require('inquirer');
 
-//slice will return brand new array based on process.argv starting at 3rd index
-const profileDataArgs = process.argv.slice(2);
-const [name,github] = profileDataArgs;
+inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is your name?'
+        }
+    ])
+    .then(answers => console.log(answers));
+//const fs = require('fs');
+//const generatePage = require('./src/page-template.js');
+
+//const pageHtml = generatePage(name,github);
 
 //first argument = file name, second argument = data, third agrument = callback function will handle errors
-fs.writeFile("index.html", generatePage(name,github), err => {
-    if (err) throw new Error (err);
-    console.log("Portfolio complete! Check out index.html to see the output!");
-});
+//fs.writeFile("index.html", generatePage(name,github), err => {
+   // if (err) throw new Error (err);
+   // console.log("Portfolio complete! Check out index.html to see the output!");
+//});
 
 
 //print items in array one by one 
